@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Key Point
+
+1. in api/xxx.js, the handler function should be "export **default** async function handler"
+
 ## Getting Started
 
 First, run the development server:
