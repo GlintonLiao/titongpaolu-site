@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo }  from "react";
 
-export default function FirstPost() {
+const FirstPost = () => {
   return (
     <div className="grid max-w-2xl gap-16 p-5 pl-8 mx-auto mb-6 md:mb-20 md:p-0 md:grid-cols-1fr-5fr">
       <div className="hidden md:block">
@@ -21,3 +21,5 @@ export default function FirstPost() {
     </div>
   );
 }
+
+export default memo(FirstPost)

@@ -7,21 +7,18 @@ import { RiStackLine } from "../components/RiStackLine";
 import { PhClockClockwiseFill } from "../components/PhClockClockwiseFill";
 import { MaterialSymbolsUpload } from "../components/MaterialSymbolsUpload";
 import { MaterialSymbolsBedtimeOutlineRounded } from "../components/MaterialSymbolsBedtimeOutlineRounded";
+import { MaterialSymbolsArrowUpwardRounded } from "../components/MaterialSymbolsArrowUpwardRounded";
 import Posts from "../components/Posts";
 import { MaterialSymbolsWbSunnyOutlineRounded } from "../components/MaterialSymbolsWbSunnyOutlineRounded";
 import { queryDatabase } from "./api/query-database";
 import { queryContent } from "./api/query-content";
 
-export default function Home({ database, content }) {
+export default function Home({ content }) {
   const arr = [false, false, false];
-
   const [isHov, setIsHov] = useState(arr);
   const [isTop, setIsTop] = useState(true);
-  const {theme, setTheme} = useTheme()
+  const { theme, setTheme } = useTheme();
 
-  const dataArr = database.results;
-  // console.log(dataArr);
-  // console.log(content);
   const obj = {
     texts: "jjjljkl",
     img: "lldiuqowy",
@@ -30,14 +27,12 @@ export default function Home({ database, content }) {
   useEffect(() => {
     const scrollFun = () => {
       if (window.pageYOffset > 20) {
-        setIsTop(false)
+        setIsTop(false);
       } else {
-        setIsTop(true)
+        setIsTop(true);
       }
-    }
-    
+    };
     window.addEventListener("scroll", scrollFun);
-  
     return () => {
       window.removeEventListener("scroll", scrollFun);
     };
@@ -50,23 +45,6 @@ export default function Home({ database, content }) {
     });
     console.log("hahaha");
   };
-
-  const view = {};
-
-  dataArr.map((item) => {
-    const typestr = item.type;
-    switch (typestr) {
-      case "paragraph":
-        view[typestr] = item[typestr].rich_text[0].plain_text;
-        break;
-      case "image":
-        view[typestr] = item[typestr].file.url;
-        break;
-      case "bulleted_list_item":
-        view.date = item[typestr].rich_text[0].plain_text;
-        break;
-    }
-  });
 
   const handleMouse = (id) => {
     const newHov = isHov;
@@ -82,12 +60,16 @@ export default function Home({ database, content }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header top={isTop}/>
+      <Header top={isTop} />
 
       <main className="max-w-2xl mx-auto">
         <div className="fixed inset-0 top-0 z-8 flex flex-col items-center justify-center text-sm">
           <div className="z-20 flex items-center space-x-6">
-            <div className={`transform duration-300 ${isTop ? "animate-landing1" : "opacity-0"}`}>
+            <div
+              className={`transform duration-300 ${
+                isTop ? "animate-landing1" : "opacity-0"
+              }`}
+            >
               <button
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(0)}
@@ -111,7 +93,11 @@ export default function Home({ database, content }) {
                 </p>
               </div>
             </div>
-            <div className={`transform duration-300 ${isTop ? "animate-landing2" : "opacity-0"}`}>
+            <div
+              className={`transform duration-300 ${
+                isTop ? "animate-landing2" : "opacity-0"
+              }`}
+            >
               <button
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(1)}
@@ -135,11 +121,16 @@ export default function Home({ database, content }) {
                 </p>
               </div>
             </div>
-            <div className={`transform duration-200 ${isTop ? "animate-landing3" : "opacity-0"}`}>
+            <div
+              className={`transform duration-200 ${
+                isTop ? "animate-landing3" : "opacity-0"
+              }`}
+            >
               <button
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(2)}
                 onMouseLeave={() => handleMouse(2)}
+                onClick={updateContent}
               >
                 <div className="transition filter group-hover:drop-shadow-glow">
                   <MaterialSymbolsUpload size="24" />
@@ -161,23 +152,37 @@ export default function Home({ database, content }) {
             </div>
           </div>
         </div>
-
-        <button onClick={updateContent}>dadad</button>
       </main>
 
-      <button className="fixed z-50 w-10 h-10 bottom-10 right-10 bg-white dark:bg-gray-800 rounded-full shadow-lg" 
-        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
+      <button
+        className="fixed z-50 w-10 h-10 bottom-10 right-10 bg-white dark:bg-gray-800 rounded-full shadow-lg"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      >
         <div className="flex justify-center transition duration-300">
-          {theme == 'dark' ? 
-            <MaterialSymbolsWbSunnyOutlineRounded size="18" /> :
+          {theme == "dark" ? (
+            <MaterialSymbolsWbSunnyOutlineRounded size="18" />
+          ) : (
             <MaterialSymbolsBedtimeOutlineRounded size="18" />
-          }
+          )}
         </div>
       </button>
 
-      <Posts top={isTop} content={content}/>
+      <button
+        className="fixed z-50 w-10 h-10 bottom-24 right-10 bg-white dark:bg-gray-800 rounded-full shadow-lg"
+        onClick={() => setTheme(() => window.scrollTo(0, 0))}
+      >
+        <div className="flex justify-center transition duration-300">
+          <MaterialSymbolsArrowUpwardRounded size="18" />
+        </div>
+      </button>
 
-      <footer className={`transform duration-200 ${isTop ? "opacity-1" : "opacity-0"} fixed inset-x-0 bottom-10 flex flex-col items-center justify-center text-center text-gray-800 dark:text-white text-md`}>
+      <Posts top={isTop} postList={content.reverse()} />
+
+      <footer
+        className={`transform duration-200 ${
+          isTop ? "opacity-1" : "opacity-0"
+        } fixed inset-x-0 bottom-10 flex flex-col items-center justify-center text-center text-gray-800 dark:text-white text-md`}
+      >
         <p className="w-40 sm:w-80">Design and coded by Guotong Liao</p>
       </footer>
     </div>
@@ -190,7 +195,7 @@ export async function getStaticProps() {
   return {
     props: {
       database,
-      content, 
+      content,
     },
   };
 }

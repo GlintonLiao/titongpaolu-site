@@ -2,19 +2,17 @@ import React from "react";
 import PostItem from "./PostItem";
 import FirstPost from "./FirstPost";
 
-export default function Posts(props) {
-  const postList = props.content;
-  console.log(postList);
+export default function Posts({ postList, top }) {
   return (
     <div
       className={`translate-y-96 duration-300 ease opacity-${
-        props.top ? 0 : 1
+        top ? 0 : 1
       }`}
     >
       <FirstPost />
       <div>
-        {postList.map(post => (
-          <PostItem content={post} key={post.results.id}/>
+        {postList.map((post, _idx) => (
+          <PostItem content={post.results} key={_idx}/>
         ))}
       </div>
     </div>

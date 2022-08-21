@@ -8,7 +8,5 @@ export const queryContent = async (pages) => {
       })
     )
   );
-
-  console.log(res);
   return res;
 };
