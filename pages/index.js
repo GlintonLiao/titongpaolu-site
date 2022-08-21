@@ -1,12 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ThemeProvider, useTheme } from "next-themes";
 import Header from "../components/Header";
 import { RiStackLine } from "../components/RiStackLine";
 import { PhClockClockwiseFill } from "../components/PhClockClockwiseFill";
 import { MaterialSymbolsUpload } from "../components/MaterialSymbolsUpload";
 import { MaterialSymbolsBedtimeOutlineRounded } from "../components/MaterialSymbolsBedtimeOutlineRounded";
+import Posts from "../components/Posts";
 import { MaterialSymbolsWbSunnyOutlineRounded } from "../components/MaterialSymbolsWbSunnyOutlineRounded";
 import { queryDatabase } from "./api/query-database";
 
@@ -14,6 +15,7 @@ export default function Home({ database }) {
   const arr = [false, false, false];
 
   const [isHov, setIsHov] = useState(arr);
+  const [isTop, setIsTop] = useState(true);
   const {theme, setTheme} = useTheme()
 
   const dataArr = database.results;
@@ -21,6 +23,22 @@ export default function Home({ database }) {
     texts: "jjjljkl",
     img: "lldiuqowy",
   };
+
+  useEffect(() => {
+    const scrollFun = () => {
+      if (window.pageYOffset) {
+        setIsTop(false)
+      } else {
+        setIsTop(true)
+      }
+    }
+    
+    window.addEventListener("scroll", scrollFun);
+  
+    return () => {
+      window.removeEventListener("scroll", scrollFun);
+    };
+  }, []);
 
   const updateContent = () => {
     fetch("http://localhost:3000/api/create-page", {
@@ -61,12 +79,12 @@ export default function Home({ database }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Header top={isTop}/>
 
       <main className="max-w-2xl mx-auto">
         <div className="fixed inset-0 top-0 z-8 flex flex-col items-center justify-center text-sm">
           <div className="z-20 flex items-center space-x-6">
-            <div className="realtive">
+            <div className={`transform duration-200 ${isTop ? "animate-landing1" : "opacity-0"}`}>
               <button
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(0)}
@@ -90,7 +108,7 @@ export default function Home({ database }) {
                 </p>
               </div>
             </div>
-            <div className="realtive">
+            <div className={`transform duration-200 ${isTop ? "animate-landing2" : "opacity-0"}`}>
               <button
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(1)}
@@ -114,7 +132,7 @@ export default function Home({ database }) {
                 </p>
               </div>
             </div>
-            <div className="realtive">
+            <div className={`transform duration-200 ${isTop ? "animate-landing3" : "opacity-0"}`}>
               <button
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(2)}
@@ -144,7 +162,7 @@ export default function Home({ database }) {
         <button onClick={updateContent}>dadad</button>
       </main>
 
-      <button className="fixed z-30 w-10 h-10 bottom-10 right-10 dark:bg-gray-800 rounded-full shadow-lg" 
+      <button className="fixed z-50 w-10 h-10 bottom-10 right-10 bg-white dark:bg-gray-800 rounded-full shadow-lg" 
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
         <div className="flex justify-center transition duration-300">
           {theme == 'dark' ? 
@@ -153,6 +171,8 @@ export default function Home({ database }) {
           }
         </div>
       </button>
+
+      <Posts />
 
       <footer className="fixed inset-x-0 bottom-10 flex flex-col items-center justify-center text-gray-800 dark:text-white text-md">
         Design and coded by Guotong Liao

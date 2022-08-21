@@ -4,7 +4,11 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        '1fr-5fr': '1fr minmax(0,5fr)',
+      }
+    },
   },
   plugins: [],
 }
