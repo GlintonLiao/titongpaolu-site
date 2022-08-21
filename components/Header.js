@@ -7,7 +7,7 @@ import { MaterialSymbolsUpload } from "./MaterialSymbolsUpload";
 export default function Header(props) {
   return (
     <div className={`duration-500 opacity-${props.top ? 0 : 1}`}>
-      <div className="fixed top-0 z-10 w-full backdrop-filter backdrop-blur-lg bg-opacity-30">
+      <div className="fixed top-0 z-10 w-full backdrop-filter backdrop-blur-md bg-opacity-60">
         <div className="flex items-center justify-between max-w-2xl p-6 py-5 mx-auto text-gray-800 dark:text-white select-none md:px-2">
           <button>
             <h1 className="duration-300 font-bold text-lg">

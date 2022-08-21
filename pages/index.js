@@ -10,8 +10,9 @@ import { MaterialSymbolsBedtimeOutlineRounded } from "../components/MaterialSymb
 import Posts from "../components/Posts";
 import { MaterialSymbolsWbSunnyOutlineRounded } from "../components/MaterialSymbolsWbSunnyOutlineRounded";
 import { queryDatabase } from "./api/query-database";
+import { queryContent } from "./api/query-content";
 
-export default function Home({ database }) {
+export default function Home({ database, content }) {
   const arr = [false, false, false];
 
   const [isHov, setIsHov] = useState(arr);
@@ -19,6 +20,8 @@ export default function Home({ database }) {
   const {theme, setTheme} = useTheme()
 
   const dataArr = database.results;
+  // console.log(dataArr);
+  // console.log(content);
   const obj = {
     texts: "jjjljkl",
     img: "lldiuqowy",
@@ -26,7 +29,7 @@ export default function Home({ database }) {
 
   useEffect(() => {
     const scrollFun = () => {
-      if (window.pageYOffset) {
+      if (window.pageYOffset > 20) {
         setIsTop(false)
       } else {
         setIsTop(true)
@@ -74,7 +77,7 @@ export default function Home({ database }) {
   return (
     <div>
       <Head>
-        <title>提桶跑路</title>
+        <title>提桶跑路.润</title>
         <meta name="description" content="快逃" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -172,7 +175,7 @@ export default function Home({ database }) {
         </div>
       </button>
 
-      <Posts top={isTop}/>
+      <Posts top={isTop} content={content}/>
 
       <footer className={`transform duration-200 ${isTop ? "opacity-1" : "opacity-0"} fixed inset-x-0 bottom-10 flex flex-col items-center justify-center text-center text-gray-800 dark:text-white text-md`}>
         <p className="w-40 sm:w-80">Design and coded by Guotong Liao</p>
@@ -183,9 +186,11 @@ export default function Home({ database }) {
 
 export async function getStaticProps() {
   const database = await queryDatabase();
+  const content = await queryContent(database.results);
   return {
     props: {
       database,
+      content, 
     },
   };
 }

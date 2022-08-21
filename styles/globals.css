@@ -54,5 +54,5 @@ body {
 }
 
 .moved {
-  transform: translateX(-27vw) translateY(42vh) scale(1.4);
+  transform: translateX(-35vw) translateY(50vh) scale(1.4);
 }
