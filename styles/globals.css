@@ -52,3 +52,7 @@ body {
   0%   {transform: translateY(15px); opacity: 0;}
   100% {transform: none;}
 }
+
+.moved {
+  transform: translateX(-27vw) translateY(42vh) scale(1.4);
+}

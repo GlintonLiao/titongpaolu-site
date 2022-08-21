@@ -84,7 +84,7 @@ export default function Home({ database }) {
       <main className="max-w-2xl mx-auto">
         <div className="fixed inset-0 top-0 z-8 flex flex-col items-center justify-center text-sm">
           <div className="z-20 flex items-center space-x-6">
-            <div className={`transform duration-200 ${isTop ? "animate-landing1" : "opacity-0"}`}>
+            <div className={`transform duration-300 ${isTop ? "animate-landing1" : "opacity-0"}`}>
               <button
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(0)}
@@ -108,7 +108,7 @@ export default function Home({ database }) {
                 </p>
               </div>
             </div>
-            <div className={`transform duration-200 ${isTop ? "animate-landing2" : "opacity-0"}`}>
+            <div className={`transform duration-300 ${isTop ? "animate-landing2" : "opacity-0"}`}>
               <button
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(1)}
@@ -172,10 +172,10 @@ export default function Home({ database }) {
         </div>
       </button>
 
-      <Posts />
+      <Posts top={isTop}/>
 
-      <footer className="fixed inset-x-0 bottom-10 flex flex-col items-center justify-center text-gray-800 dark:text-white text-md">
-        Design and coded by Guotong Liao
+      <footer className={`transform duration-200 ${isTop ? "opacity-1" : "opacity-0"} fixed inset-x-0 bottom-10 flex flex-col items-center justify-center text-center text-gray-800 dark:text-white text-md`}>
+        <p className="w-40 sm:w-80">Design and coded by Guotong Liao</p>
       </footer>
     </div>
   );
