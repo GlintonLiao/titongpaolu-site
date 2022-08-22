@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { RiStackLine } from "./RiStackLine";
 import { PhClockClockwiseFill } from "./PhClockClockwiseFill";
 import { MaterialSymbolsUpload } from "./MaterialSymbolsUpload";
@@ -14,14 +13,14 @@ export default function Header(props) {
               提桶跑路
             </h1>
           </button>
-          <div className="flex items-center space-x-6">
-            <button className={`transition duration-300 ease ${props.top ? "moved opacity-0" : ""}`}>
+          <div className={`flex items-center space-x-6 transition duration-300 ease ${props.top ? "moved opacity-0" : ""}`}>
+            <button className={`transition duration-300 ease`}>
               <RiStackLine size="18" />
             </button>
-            <button className={`transition duration-300 ease ${props.top ? "moved opacity-0" : ""}`}>
+            <button className={`transition duration-300 ease `}>
               <PhClockClockwiseFill size="18" />
             </button>
-            <button className={`transition duration-300 ease ${props.top ? "moved opacity-0" : ""}`}>
+            <button className={`transition duration-300 ease `}>
               <MaterialSymbolsUpload size="18" />
             </button>
           </div>

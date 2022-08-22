@@ -33,8 +33,13 @@ export default function upload() {
   };
 
   const handleInputChange = (e) => {
-    console.log(e.target.files);
+    const text = e.target.files
   };
+
+  const handleFileChange = (e) => {
+    const fileList = e.target.files;
+    
+  }
 
   return (
     <>
@@ -67,7 +72,7 @@ export default function upload() {
               hover:file:bg-gray-100"
               accept="image/gif,image/jpeg,image/jpg,image/png"
               multiple
-              onChange={handleInputChange}
+              onChange={handleFileChange}
             />
 
             <button
