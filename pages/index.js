@@ -1,23 +1,21 @@
 import Head from "next/head";
-import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
-import { ThemeProvider, useTheme } from "next-themes";
 import Header from "../components/Header";
 import { RiStackLine } from "../components/RiStackLine";
 import { PhClockClockwiseFill } from "../components/PhClockClockwiseFill";
 import { MaterialSymbolsUpload } from "../components/MaterialSymbolsUpload";
-import { MaterialSymbolsBedtimeOutlineRounded } from "../components/MaterialSymbolsBedtimeOutlineRounded";
 import { MaterialSymbolsArrowUpwardRounded } from "../components/MaterialSymbolsArrowUpwardRounded";
+import ToggleDarkModeButton from "../components/ToggleDarkModeButton";
 import Posts from "../components/Posts";
-import { MaterialSymbolsWbSunnyOutlineRounded } from "../components/MaterialSymbolsWbSunnyOutlineRounded";
 import { queryDatabase } from "./api/query-database";
 import { queryContent } from "./api/query-content";
 
 export default function Home({ content }) {
+
   const arr = [false, false, false];
   const [isHov, setIsHov] = useState(arr);
   const [isTop, setIsTop] = useState(true);
-  const { theme, setTheme } = useTheme();
 
   const obj = {
     texts: "jjjljkl",
@@ -37,14 +35,6 @@ export default function Home({ content }) {
       window.removeEventListener("scroll", scrollFun);
     };
   }, []);
-
-  const updateContent = () => {
-    fetch("http://localhost:3000/api/create-page", {
-      method: "post",
-      body: JSON.stringify(obj),
-    });
-    console.log("hahaha");
-  };
 
   const handleMouse = (id) => {
     const newHov = isHov;
@@ -126,16 +116,17 @@ export default function Home({ content }) {
                 isTop ? "animate-landing3" : "opacity-0"
               }`}
             >
-              <button
-                className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
-                onMouseEnter={() => handleMouse(2)}
-                onMouseLeave={() => handleMouse(2)}
-                onClick={updateContent}
-              >
-                <div className="transition filter group-hover:drop-shadow-glow">
-                  <MaterialSymbolsUpload size="24" />
-                </div>
-              </button>
+              <Link href="/upload">
+                <button
+                  className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
+                  onMouseEnter={() => handleMouse(2)}
+                  onMouseLeave={() => handleMouse(2)}
+                >
+                  <div className="transition filter group-hover:drop-shadow-glow">
+                    <MaterialSymbolsUpload size="24" />
+                  </div>
+                </button>
+              </Link>
               <div
                 className={`relative text-center transition ease-in-out duration-300 ${
                   isHov[2] ? "opacity-100" : "opacity-0"
@@ -154,18 +145,7 @@ export default function Home({ content }) {
         </div>
       </main>
 
-      <button
-        className="fixed z-50 w-10 h-10 bottom-10 right-10 bg-white dark:bg-gray-800 rounded-full shadow-lg"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      >
-        <div className="flex justify-center transition duration-300">
-          {theme == "dark" ? (
-            <MaterialSymbolsWbSunnyOutlineRounded size="18" />
-          ) : (
-            <MaterialSymbolsBedtimeOutlineRounded size="18" />
-          )}
-        </div>
-      </button>
+      <ToggleDarkModeButton />
 
       <button
         className="fixed z-50 w-10 h-10 bottom-24 right-10 bg-white dark:bg-gray-800 rounded-full shadow-lg"
