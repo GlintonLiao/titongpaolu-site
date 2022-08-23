@@ -1,10 +1,38 @@
 import { notion } from './client';
 
+const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 export default async function handler(req, res) {
     const obj = JSON.parse(req.body)
-    const img = obj.img
-    const texts = obj.texts
-    console.log(img + " " + texts);
+    const imgs = obj.imgs
+    const text = obj.text
+    const date = Date.now();
+    const formattedDate = months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+    console.log(imgs + " " + text);
+
+    const TextObj = {
+        "object": "block",
+        "paragraph": {
+            "rich_text": [
+                {
+                    "text": {
+                        "content": `${text}`
+                    }
+                }
+            ]
+        }
+    }
+
+    const imgObj = [];
+    imgs.map(img => {
+        imgObj.push({
+            "object": "block",
+            "imgs": {
+                "url": `${img}`
+            }
+        })
+    })
+
     await notion.pages.create({
       "parent": {
           "type": "database_id",
@@ -15,42 +43,15 @@ export default async function handler(req, res) {
               "title": [
                   {
                       "text": {
-                          "content": `${texts}`
+                          "content": `${formattedDate}`
                       }
                   }
               ]
           },
       },
       "children": [
-          {
-              "object": "block",
-              "heading_2": {
-                  "rich_text": [
-                      {
-                          "text": {
-                              "content": `${img}`
-                          }
-                      }
-                  ]
-              }
-          },
-          {
-              "object": "block",
-              "paragraph": {
-                  "rich_text": [
-                      {
-                          "text": {
-                              "content": "Lacinato kale is a variety of kale with a long tradition in Italian cuisine, especially that of Tuscany. It is also known as Tuscan kale, Italian kale, dinosaur kale, kale, flat back kale, palm tree kale, or black Tuscan palm.",
-                              "link": {
-                                  "url": "https://en.wikipedia.org/wiki/Lacinato_kale"
-                              }
-                          },
-                          "href": "https://en.wikipedia.org/wiki/Lacinato_kale"
-                      }
-                  ],
-                  "color": "default"
-              }
-          }
+          TextObj,
+          ...imgObj
       ]
   });
   return res.json("Success");

@@ -24,7 +24,15 @@ const fileList = [
 
 export default function upload() {
 
+  const [textInput, setTextInput] = useState('');
+  const [imgList, setImgList] = useState([]);
+
   const updateContent = () => {
+
+    const obj = {};
+    obj.text = textInput;
+    obj.imgs = imgList;
+
     fetch("/api/create-page", {
       method: "post",
       body: JSON.stringify(obj),
@@ -33,12 +41,17 @@ export default function upload() {
   };
 
   const handleInputChange = (e) => {
-    const text = e.target.files
+    const text = e.target.value;
+    setTextInput(text);
   };
 
   const handleFileChange = (e) => {
     const fileList = e.target.files;
-    
+    const imgs = []
+    fileList.map(img => {
+      imgs.push(URL.createObjectURL(img))
+    })
+    setImgList(imgs);
   }
 
   return (
