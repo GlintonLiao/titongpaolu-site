@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Header from "../components/Header";
 import { RiStackLine } from "../components/RiStackLine";
 import { PhClockClockwiseFill } from "../components/PhClockClockwiseFill";
@@ -10,12 +10,13 @@ import ToggleDarkModeButton from "../components/ToggleDarkModeButton";
 import Posts from "../components/Posts";
 import { queryDatabase } from "./api/query-database";
 import { queryContent } from "./api/query-content";
+import { Context } from "../context/ContextProvider";
 
 export default function Home({ content }) {
-  
   const arr = [false, false, false];
   const [isHov, setIsHov] = useState(arr);
   const [isTop, setIsTop] = useState(true);
+  const [posts, setPosts] = useContext(Context);
 
   useEffect(() => {
     const scrollFun = () => {
@@ -29,6 +30,11 @@ export default function Home({ content }) {
     return () => {
       window.removeEventListener("scroll", scrollFun);
     };
+  }, []);
+
+  useEffect(() => {
+    setPosts(content);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleMouse = (id) => {
@@ -55,15 +61,17 @@ export default function Home({ content }) {
                 isTop ? "animate-landing1" : "opacity-0"
               }`}
             >
-              <button
-                className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
-                onMouseEnter={() => handleMouse(0)}
-                onMouseLeave={() => handleMouse(0)}
-              >
-                <div className="transition filter group-hover:drop-shadow-glow">
-                  <RiStackLine size="24" />
-                </div>
-              </button>
+              <Link href="/gallery">
+                <button
+                  className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
+                  onMouseEnter={() => handleMouse(0)}
+                  onMouseLeave={() => handleMouse(0)}
+                >
+                  <div className="transition filter group-hover:drop-shadow-glow">
+                    <RiStackLine size="24" />
+                  </div>
+                </button>
+              </Link>
               <div
                 className={`relative text-center transition ease-in-out duration-300 ${
                   isHov[0] ? "opacity-100" : "opacity-0"

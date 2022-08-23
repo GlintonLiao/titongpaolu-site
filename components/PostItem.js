@@ -19,8 +19,6 @@ const PostItem = ({ content }) => {
     }
   });
 
-  console.log(imgs);
-
   return (
     <>
       <div className="grid max-w-2xl gap-16 pl-8 pr-5 mx-auto transition-opacity md:p-0 md:grid-cols-1fr-5fr">
