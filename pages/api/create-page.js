@@ -1,27 +1,11 @@
 import { notion } from "./client";
-
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+import { getDate } from "../../utils/getDate";
 
 export default async function handler(req, res) {
   const obj = JSON.parse(req.body);
   // const imgs = obj.imgs
   const text = obj.text;
-  const date = new Date();
-  const formattedDate =
-    months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+  const date = getDate();
 
   // const imgObj = [];
   // imgs.map(img => {
@@ -36,14 +20,14 @@ export default async function handler(req, res) {
   await notion.pages.create({
     parent: {
       type: "database_id",
-      database_id: "56de3cdbd73e42a48312963191b6401e",
+      database_id: process.env.NOTION_DATABASE_ID,
     },
     properties: {
       Title: {
         title: [
           {
             text: {
-              content: `${formattedDate}`,
+              content: `${date}`,
             },
           },
         ],
@@ -57,7 +41,7 @@ export default async function handler(req, res) {
             {
                 type: "text",
                 text: {
-                  content: `${formattedDate}`,
+                  content: `${date}`,
                   link: null
                 },
             },

@@ -12,7 +12,7 @@ import { queryDatabase } from "./api/query-database";
 import { queryContent } from "./api/query-content";
 
 export default function Home({ content }) {
-
+  
   const arr = [false, false, false];
   const [isHov, setIsHov] = useState(arr);
   const [isTop, setIsTop] = useState(true);
@@ -87,11 +87,13 @@ export default function Home({ content }) {
                 className="p-4 duration-300 ease-in-out hover:-translate-y-2 dark:bg-gray-800 rounded-2xl shadow-lg group"
                 onMouseEnter={() => handleMouse(1)}
                 onMouseLeave={() => handleMouse(1)}
-                onClick={() => window.scrollTo({
-                  top: 25, 
-                  left: 25, 
-                  behavior: 'smooth', 
-                })}
+                onClick={() =>
+                  window.scrollTo({
+                    top: 25,
+                    left: 25,
+                    behavior: "smooth",
+                  })
+                }
               >
                 <div className="transition filter group-hover:drop-shadow-glow">
                   <PhClockClockwiseFill size="24" />
@@ -149,11 +151,13 @@ export default function Home({ content }) {
 
       <button
         className="fixed z-50 w-10 h-10 bottom-24 right-10 bg-white dark:bg-gray-800 rounded-full shadow-lg"
-        onClick={() => window.scrollTo({
-          top: 0, 
-          left: 0, 
-          behavior: 'smooth', 
-        })}
+        onClick={() =>
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          })
+        }
       >
         <div className="flex justify-center transition duration-300">
           <MaterialSymbolsArrowUpwardRounded size="18" />

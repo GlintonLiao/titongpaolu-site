@@ -3,6 +3,10 @@ import Link from "next/link";
 import { MaterialSymbolsArrowBackRounded } from "../components/MaterialSymbolsArrowBackRounded";
 import ToggleDarkModeButton from "../components/ToggleDarkModeButton";
 
+/**
+ * the notion api doesn't support file upload
+ * so image upload feature (commented part) is temporarily unavailable
+ */
 export default function Up() {
   const [textInput, setTextInput] = useState("");
   // const [imgList, setImgList] = useState([]);
@@ -16,7 +20,7 @@ export default function Up() {
       method: "post",
       body: JSON.stringify(obj),
     });
-    console.log("hahaha");
+    // console.log("Uploading");
   };
 
   const handleInputChange = (e) => {
