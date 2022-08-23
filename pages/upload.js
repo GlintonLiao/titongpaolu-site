@@ -1,37 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { MaterialSymbolsArrowBackRounded } from "../components/MaterialSymbolsArrowBackRounded";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, Upload } from "antd";
-import { MaterialSymbolsUpload } from "../components/MaterialSymbolsUpload";
 import ToggleDarkModeButton from "../components/ToggleDarkModeButton";
 
-const fileList = [
-  {
-    uid: "-1",
-    name: "xxx.png",
-    status: "done",
-    url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    thumbUrl:
-      "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-  },
-  {
-    uid: "-2",
-    name: "yyy.png",
-    status: "error",
-  },
-];
-
-export default function upload() {
-
-  const [textInput, setTextInput] = useState('');
-  const [imgList, setImgList] = useState([]);
+export default function Up() {
+  const [textInput, setTextInput] = useState("");
+  // const [imgList, setImgList] = useState([]);
 
   const updateContent = () => {
-
     const obj = {};
     obj.text = textInput;
-    obj.imgs = imgList;
+    // obj.imgs = imgList;
 
     fetch("/api/create-page", {
       method: "post",
@@ -43,16 +22,17 @@ export default function upload() {
   const handleInputChange = (e) => {
     const text = e.target.value;
     setTextInput(text);
+    console.log(text);
   };
 
-  const handleFileChange = (e) => {
-    const fileList = e.target.files;
-    const imgs = []
-    fileList.map(img => {
-      imgs.push(URL.createObjectURL(img))
-    })
-    setImgList(imgs);
-  }
+  // const handleFileChange = (e) => {
+  //   const fileList = e.target.files;
+  //   const imgs = []
+  //   fileList.map(img => {
+  //     imgs.push(URL.createObjectURL(img))
+  //   })
+  //   setImgList(imgs);
+  // }
 
   return (
     <>
@@ -74,7 +54,7 @@ export default function upload() {
               placeholder="输入文字..."
               onChange={handleInputChange}
             ></textarea>
-            
+
             <input
               type="file"
               className="block w-full text-sm text-slate-500
@@ -85,7 +65,7 @@ export default function upload() {
               hover:file:bg-gray-100"
               accept="image/gif,image/jpeg,image/jpg,image/png"
               multiple
-              onChange={handleFileChange}
+              // onChange={handleFileChange}
             />
 
             <button

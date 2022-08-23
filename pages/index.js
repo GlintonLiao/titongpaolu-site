@@ -160,7 +160,7 @@ export default function Home({ content }) {
         </div>
       </button>
 
-      <Posts top={isTop} postList={content.reverse()} />
+      <Posts top={isTop} postList={content} />
 
       <footer
         className={`transform duration-200 ${
