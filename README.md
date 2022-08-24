@@ -1,7 +1,46 @@
-# TITONGPAOLU-SITE
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">TITONGPAOLU</h3>
+
+  <p align="center">
+    An awesome README template to jumpstart your projects!
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+  </p>
+</div>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+
+Architectural industry has become a nightmare for its low pay and regularly overwork. However, architectural students might have no awareness about the actual working environment, still holding an idealism expectation on this major, a major that is considered to be "art".
+
+The name of this project "TITONGPAOLU", stands for a chinese word “提桶跑路”, which means a worker, carring his/her bucket, and runs away from the construction site.
+
+The materials for this page are from various social media platforms, dedicating to telling people, **do not enter the architectural industry**.
+
+## Project Structure
+
++ Front-end: 
+  + React.js
+  + Tailwind CSS
++ Back-end: 
+  + next.js
+  + notion database and API
+  
+## Key Concept
+
+### Static Site Generation (SSG)
+
+### `useContext()`
 
 ## Key Point
 
