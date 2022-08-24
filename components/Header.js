@@ -17,9 +17,11 @@ export default function Header(props) {
               props.top ? "moved opacity-0" : ""
             }`}
           >
-            <button className={`transition duration-300 ease`}>
-              <RiStackLine size="18" />
-            </button>
+            <Link href="/gallery">
+              <button className={`transition duration-300 ease`}>
+                <RiStackLine size="18" />
+              </button>
+            </Link>
             <button
               className={`transition duration-300 ease`}
               onClick={() =>

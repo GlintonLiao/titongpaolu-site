@@ -65,7 +65,8 @@ export default function Up() {
               file:mr-4 file:py-2 file:px-4
               file:rounded-full file:border-0
               file:text-sm file:font-semibold
-              file:bg-gray-50 file:text-gray-700
+              file:bg-gray-50 dark:file:bg-gray-700 file:text-gray-700
+              dark:file:text-gray-200
               hover:file:bg-gray-100"
               accept="image/gif,image/jpeg,image/jpg,image/png"
               multiple
@@ -73,7 +74,7 @@ export default function Up() {
             />
 
             <button
-              className="flex w-full text-md h-12 rounded-full justify-center items-center transition duration-300 bg-gray-200 hover:bg-gray-500 hover:text-white focus:outline-none focus:ring focus:ring-gray-300"
+              className="flex w-full text-md h-12 rounded-full justify-center items-center transition duration-300 bg-gray-200 dark:bg-gray-800 hover:bg-gray-500 hover:text-white focus:outline-none focus:ring focus:ring-gray-300"
               onClick={updateContent}
             >
               发布
