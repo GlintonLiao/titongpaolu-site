@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/glintonliao/titongpaolu-site">
+    <img src="https://user-images.githubusercontent.com/37015336/186441854-6f2c7914-c042-45f3-ab82-0f63d9d18ef8.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">TITONGPAOLU</h3>
@@ -10,7 +10,7 @@
   <p align="center">
     An informative website that keeps people away from the architectural industry
     <br />
-    <a href="https://github.com/glintonliao/titongpaolu-site">View Demo</a>
+    <a href="https://www.titongpaolu.run/">Website</a>
     ·
     <a href="https://github.com/glintonliao/titongpaolu-site/issues">Report Bug</a>
     ·
@@ -105,6 +105,7 @@ npm install
 # or
 yarn add
 ```
+![noun-bucket-5095340 拷贝](https://user-images.githubusercontent.com/37015336/186441854-6f2c7914-c042-45f3-ab82-0f63d9d18ef8.png)
 
 Finally, run the development server:
 
