@@ -8,13 +8,13 @@
   <h3 align="center">TITONGPAOLU</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An informative website that keeps people away from the architectural industry
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/glintonliao/titongpaolu-site">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/glintonliao/titongpaolu-site/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/glintonliao/titongpaolu-site/issues">Request Feature</a>
   </p>
 </div>
 
@@ -25,7 +25,7 @@ Architectural industry has become a nightmare for its low pay and regularly over
 
 The name of this project "TITONGPAOLU", stands for a chinese word “提桶跑路”, which means a worker, carring his/her bucket, and runs away from the construction site.
 
-The materials for this page are from various social media platforms, dedicating to telling people, **do not enter the architectural industry**.
+The materials for this page are from various social media platforms, dedicating to telling people, **stay away from the architectural industry**.
 
 ## Project Structure
 
@@ -36,19 +36,59 @@ The materials for this page are from various social media platforms, dedicating 
   + next.js
   + notion database and API
   
-## Key Concept
+## Key Concepts
 
 ### Static Site Generation (SSG)
 
-### `useContext()`
++ #### Data Fetching
+  
+   next.js supports ssg for each page, to use this feature:
+   ```javascript
+   // /page/xx.js
+   export getStaticPorps() {
+     // call api here
+     return {
+     }
+   }
+   ```
+   next will call this function from the server side during the building process, and for a headless CMS such as Notion, users cannot call the api directly from the page, so ssg of next is a perfect match for such scenario.
 
-## Key Point
+  > **notice**: in api/xxx.js, the handler function should be "export **default** async function handler", otherwise will throw an error.
+  
++ #### Data Parsing
 
-1. in api/xxx.js, the handler function should be "export **default** async function handler"
+In this project, objects returned from notion 
 
-## Getting Started
+### Dynamic Routing
 
-First, run the development server:
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+### Dark Mode
+
+### Context Hook
+
+### Masonary Layout
+
+## Runs The Project on Your Local Machine
+
+First, clone the project source code from your terminal:
+
+```bash
+git clone git@github.com:GlintonLiao/titongpaolu-site.git
+cd titongpaolu-site
+```
+
+Second, install the dependencies:
+
+```sh
+npm install
+# or
+yarn add
+```
+
+Finally, run the development server:
 
 ```bash
 npm run dev
@@ -59,10 +99,6 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Learn More
 
