@@ -42,36 +42,54 @@ The materials for this page are from various social media platforms, dedicating 
 
 + #### Data Fetching
   
-   next.js supports ssg for each page, to use this feature:
-   ```javascript
-   // /page/xx.js
-   export getStaticPorps() {
-     // call api here
-     return {
-     }
-   }
+  next.js supports ssg for each page, to use this feature, add:
+  ```javascript
+  // page/index.js
+  export async function getStaticProps() {
+    // call the api
+    // you can also write specific logic directly inside this funciton
+    const database = await queryDatabase();
+    const content = await queryContent(database.results);
+    return {
+      props: {
+        content,
+      },
+    };
+  }
+  
+  // and the page can receive the return value as props
+  export default function Home({ content }) {
+    ...
+  }
    ```
-   next will call this function from the server side during the building process, and for a headless CMS such as Notion, users cannot call the api directly from the page, so ssg of next is a perfect match for such scenario.
+   next will call this function from the server side during the building process, and for a headless CMS which users cannot call the api directly from the page, this feature will be a perfect match for such scenario.
 
   > **notice**: in api/xxx.js, the handler function should be "export **default** async function handler", otherwise will throw an error.
   
 + #### Data Parsing
 
-In this project, objects returned from notion 
+  In this project, objects returned from notion are complex and have many restrictions. For example:
+  
+  + Query a notion database will return a list of objects, but for each property in the database, the returning obj only contains its id, not the value.
+  + The path to find a text is: database -> page obj[list] -> results[list] -> block -> children[list] -> type == 'image' -> file -> url
+  
+  In terms of this "complex" objects, I feel like it is more appropriate to use TypeScript reduce the debug time.
 
 ### Dynamic Routing
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/someapi.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ### Dark Mode
 
+Tailwind CSS supports dark mode natively, but still need to add some code to enable it.
+
 ### Context Hook
 
 ### Masonary Layout
 
-## Runs The Project on Your Local Machine
+## Run on Your Local Machine
 
 First, clone the project source code from your terminal:
 
