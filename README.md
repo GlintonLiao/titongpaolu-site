@@ -73,7 +73,7 @@ The materials for this page are from various social media platforms, dedicating 
   + Query a notion database will return a list of objects, but for each property in the database, the returning obj only contains its id, not the value.
   + The path to find a text is: database -> page obj[list] -> results[list] -> block -> children[list] -> type == 'image' -> file -> url
   
-  In terms of this "complex" objects, I feel like it is more appropriate to use TypeScript reduce the debug time.
+  Next time, I will use **TypeScript** to reduce the debug time ==.
 
 ### Dynamic Routing
 
@@ -81,13 +81,106 @@ The materials for this page are from various social media platforms, dedicating 
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+We need to export a handler function:
+
+```javascript
+// api/xx.js
+export default async function handler(req, res) {
+  ...
+  return res.json("Success");
+}
+```
+
+When we call api like this:
+
+```javascript
+const res = fetch('api/xx');
+```
+
+the handler function will be called.
+
 ### Dark Mode
 
-Tailwind CSS supports dark mode natively, but still need to add some code to enable it.
+Tailwind CSS supports [dark mode](https://tailwindcss.com/docs/dark-mode) natively, all we need is to add `dark:` to the Tailwind attributes, and add `dark` to the classList.
+
+For this project, I chose to use a external library [next-theme](https://www.npmjs.com/package/next-themes).
+
+to enable dark mode, just wrap every child components with `<ThemeProvider />` in `_app.js`:
+
+```javascript
+import { ThemeProvider } from "next-themes";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <ThemeProvider attribute="class">
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+}
+```
 
 ### Context Hook
 
+Because we have a gallery page using dynamic routing:
+
+```javascript
+<Link href="/gallery">
+  <button>
+    ...
+  </button>
+</Link>
+```
+
+and we cannot pass props using `<Link />`, so we need to use either third-party state management tools like redux, or the native context API of React.
+
+to use context api, in `context/` folder, we can create a context provider:
+
+```javascript
+import { createContext } from "react";
+import React, { useState } from "react";
+export const Context = createContext();
+
+function ContextProvider({ children }) {
+  const [posts, setPosts] = useState([]);
+  return (
+    <Context.Provider value={[posts, setPosts]}>
+      {children}
+    </Context.Provider>
+  );
+}
+
+export default ContextProvider;
+```
+
+and warp the root component with the provider:
+
+```javascript
+// _app.js
+function MyApp({ Component, pageProps }) {
+  return (
+    <ContextProvider>
+        <Component {...pageProps} />
+    </ContextProvider>
+  );
+}
+```
+
+and in each page, we can access context and update context:
+
+```javascript
+// /pages/gallery.js
+const Gallery = () => {
+  const [posts, setPosts] = useContext(Context);
+  console.log(posts);
+  setPosts(...);
+}
+```
+
 ### Masonary Layout
+
+By setting different flex direction, we can easily achieve such effect:
+
+<img width="500" alt="flex img" src="https://user-images.githubusercontent.com/37015336/186587949-e3c7f679-d1e4-4089-b8cf-fcc677a33e53.png">
 
 ## Run on Your Local Machine
 
@@ -105,7 +198,8 @@ npm install
 # or
 yarn add
 ```
-![noun-bucket-5095340 拷贝](https://user-images.githubusercontent.com/37015336/186441854-6f2c7914-c042-45f3-ab82-0f63d9d18ef8.png)
+
+> If you haven't install any package manager, make sure you install it first.
 
 Finally, run the development server:
 
@@ -130,6 +224,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy the Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Import project from Github repository
+2. Set environment variables such as `NOTION_API_KEY` and `DATABASE_NAME`
+3. Set custom domain name
