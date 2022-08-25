@@ -34,8 +34,8 @@ const Gallery = () => {
           <MaterialSymbolsArrowBackRounded size="24" />
         </button>
       </Link>
-      <div className="absolute inset-x-8 inset-y-28 flex flex-row max-w-5xl mx-auto space-x-8">
-        <div className="flex flex-col space-y-8">
+      <div className="absolute inset-x-8 inset-y-28 flex flex-row max-w-5xl mx-auto space-x-2 md:space-x-8">
+        <div className="flex flex-col space-y-2 md:space-y-8">
           {col1.map((item, _idx) => (
             <Zoom key={_idx}>
               <picture>
@@ -44,7 +44,7 @@ const Gallery = () => {
             </Zoom>
           ))}
         </div>
-        <div className="flex flex-col space-y-8">
+        <div className="flex flex-col space-y-2 md:space-y-8">
           {col2.map((item, _idx) => (
             <Zoom key={_idx}>
               <picture>
@@ -53,7 +53,7 @@ const Gallery = () => {
             </Zoom>
           ))}
         </div>
-        <div className="flex flex-col space-y-8">
+        <div className="flex flex-col space-y-2 md:space-y-8">
           {col3.map((item, _idx) => (
             <Zoom key={_idx}>
               <picture>

@@ -6,7 +6,7 @@ export const queryDatabase = async () => {
     sorts: [
       {
         timestamp: "last_edited_time", 
-        direction: "ascending"
+        direction: "descending"
       }
     ]
   });

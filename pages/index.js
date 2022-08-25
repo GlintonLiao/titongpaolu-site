@@ -193,5 +193,6 @@ export async function getStaticProps() {
       database,
       content,
     },
+    revalidate: 30, // In seconds
   };
 }
