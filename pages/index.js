@@ -54,7 +54,7 @@ export default function Home({ content }) {
       <Header top={isTop} />
 
       <main className="max-w-2xl mx-auto">
-        <div className="fixed inset-0 top-0 z-8 flex flex-col items-center justify-center text-sm">
+        <div className="fixed inset-0 top-0 z-20 flex flex-col items-center justify-center text-sm">
           <div className="z-20 flex items-center space-x-6">
             <div
               className={`transform duration-300 ${
