@@ -5,7 +5,7 @@
     <img src="https://user-images.githubusercontent.com/37015336/186441854-6f2c7914-c042-45f3-ab82-0f63d9d18ef8.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">TITONGPAOLU</h3>
+  <h3 align="center">TITONGPAOLU.RUN</h3>
 
   <p align="center">
     An informative website that keeps people away from the architectural industry
@@ -21,11 +21,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Architectural industry has become a nightmare for its low pay and regularly overwork. However, architectural students might have no awareness about the actual working environment, still holding an idealism expectation on this major, a major that is considered to be "art".
+The architectural industry has become a nightmare for its low pay and regular overwork. However, architectural students might have no awareness of the actual working environment, still holding an idealistic expectation of this major, a major that is considered to be "art".
 
-The name of this project "TITONGPAOLU", stands for a chinese word “提桶跑路”, which means a worker, carring his/her bucket, and runs away from the construction site.
+The name of this project "TITONGPAOLU", stands for a Chinese word “提桶跑路”, which means a worker, carrying his/her bucket, and running away from the construction site.
 
-The materials for this page are from various social media platforms, dedicating to telling people, **stay away from the architectural industry**.
+The materials for this page are from various social media platforms, dedicated to telling people, **stay away from the architectural industry**.
 
 ## Project Structure
 

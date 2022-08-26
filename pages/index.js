@@ -179,7 +179,7 @@ export default function Home({ content }) {
           isTop ? "opacity-1" : "opacity-0"
         } fixed inset-x-0 bottom-10 flex flex-col items-center justify-center text-center text-gray-800 dark:text-white text-md`}
       >
-        <p className="w-40 sm:w-80">Design and coded by Guotong Liao</p>
+        <p className="w-40 sm:w-80">Designed and coded by Guotong Liao</p>
       </footer>
     </div>
   );
