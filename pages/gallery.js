@@ -30,7 +30,7 @@ const Gallery = () => {
   return (
     <>
       <Link href="/">
-        <button className="fixed bg-white dark:bg-gray-800 flex z-10 w-10 h-10 top-10 left-1/2 rounded-full shadow-md justify-center items-center">
+        <button className="fixed bg-white dark:bg-gray-800 flex z-10 w-10 h-10 top-10 mx-auto rounded-full shadow-md justify-center items-center">
           <MaterialSymbolsArrowBackRounded size="24" />
         </button>
       </Link>
