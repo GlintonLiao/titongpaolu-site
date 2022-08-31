@@ -101,7 +101,7 @@ the handler function will be called.
 
 ### Dark Mode
 
-Tailwind CSS supports [dark mode](https://tailwindcss.com/docs/dark-mode) natively, all we need is to add `dark:` to the Tailwind attributes, and add `dark` to the classList.
+Tailwind CSS supports [dark mode](https://tailwindcss.com/docs/dark-mode) natively, all we need is to add `dark:` to the Tailwind attributes, and then add `dark` to the classList.
 
 For this project, I chose to use a external library [next-theme](https://www.npmjs.com/package/next-themes).
 
