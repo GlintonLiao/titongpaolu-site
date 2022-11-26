@@ -58,7 +58,7 @@ export default function Home({ content }) {
           <div className="z-20 flex items-center space-x-6">
             <div
               className={`transform duration-300 ${
-                isTop ? "animate-landing1" : "opacity-0"
+                isTop ? "animate-landing1" : "opacity-0 z-0"
               }`}
             >
               <Link href="/gallery">
@@ -88,7 +88,7 @@ export default function Home({ content }) {
             </div>
             <div
               className={`transform duration-300 ${
-                isTop ? "animate-landing2" : "opacity-0"
+                isTop ? "animate-landing2" : "opacity-0 z-0"
               }`}
             >
               <button
@@ -123,7 +123,7 @@ export default function Home({ content }) {
             </div>
             <div
               className={`transform duration-200 ${
-                isTop ? "animate-landing3" : "opacity-0"
+                isTop ? "animate-landing3" : "opacity-0 z-0"
               }`}
             >
               <Link href="/upload">
