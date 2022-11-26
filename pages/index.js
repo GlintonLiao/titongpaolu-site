@@ -51,14 +51,14 @@ export default function Home({ content }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header top={isTop} />
+      <Header top={isTop} className="z-10"/>
 
       <main className="max-w-2xl mx-auto">
-        <div className="fixed inset-0 top-0 z-20 flex flex-col items-center justify-center text-sm">
+        <div className="fixed inset-0 top-0 flex flex-col items-center justify-center text-sm">
           <div className="z-20 flex items-center space-x-6">
             <div
               className={`transform duration-300 ${
-                isTop ? "animate-landing1" : "opacity-0 z-0"
+                isTop ? "animate-landing1" : "opacity-0 invisible"
               }`}
             >
               <Link href="/gallery">
@@ -88,7 +88,7 @@ export default function Home({ content }) {
             </div>
             <div
               className={`transform duration-300 ${
-                isTop ? "animate-landing2" : "opacity-0 z-0"
+                isTop ? "animate-landing2" : "opacity-0 invisible"
               }`}
             >
               <button
@@ -123,7 +123,7 @@ export default function Home({ content }) {
             </div>
             <div
               className={`transform duration-200 ${
-                isTop ? "animate-landing3" : "opacity-0 z-0"
+                isTop ? "animate-landing3" : "opacity-0 invisible"
               }`}
             >
               <Link href="/upload">

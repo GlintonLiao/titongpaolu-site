@@ -7,8 +7,8 @@ import { MaterialSymbolsUpload } from "./MaterialSymbolsUpload";
 export default function Header(props) {
   return (
     <div className={`duration-500 opacity-${props.top ? 0 : 1}`}>
-      <div className="fixed top-0 z-20 w-full backdrop-filter backdrop-blur-md bg-opacity-60">
-        <div className="flex items-center justify-between max-w-2xl p-6 py-5 mx-auto text-gray-800 dark:text-white select-none md:px-2">
+      <div className="fixed top-0 z-20 w-full backdrop-filter backdrop-blur-md bg-opacity-70 bg-white dark:bg-black">
+        <div className="flex items-center z-10 justify-between max-w-2xl p-6 py-5 mx-auto text-gray-800 dark:text-white select-none md:px-2">
           <button>
             <h1 className="duration-300 font-bold text-lg">提桶跑路</h1>
           </button>
