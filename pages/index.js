@@ -185,7 +185,7 @@ export default function Home({ content }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const database = await queryDatabase();
   const content = await queryContent(database.results);
   return {
@@ -193,6 +193,6 @@ export async function getServerSideProps() {
       database,
       content,
     },
-    // revalidate: 30, // In seconds
+    revalidate: 100, // In seconds
   };
 }
